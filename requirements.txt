@@ -1,5 +1,8 @@
 Flask==2.0.2
 Werkzeug==2.0.3
-Pillow>=10.0.0  # 최신 버전으로 변경
+Pillow>=10.0.0  # 최신 버전
 numpy
 opencv-python
+torch  # PyTorch 추가
+pandas  # pandas 추가
+matplotlib  # 선택 사항, 시각화 필요 시 추가
