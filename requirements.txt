@@ -1,6 +1,5 @@
 Flask==2.0.2
 Werkzeug==2.0.3
-Pillow==8.3.2
+Pillow>=10.0.0  # 최신 버전으로 변경
 numpy
 opencv-python
-torch==1.9.0+cpu  # CPU 전용 경량화 버전
