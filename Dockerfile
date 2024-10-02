@@ -17,8 +17,11 @@ WORKDIR /app
 # 필요한 패키지 복사
 COPY requirements.txt requirements.txt
 
-# PyTorch 및 필요한 패키지 설치 (pandas, requests 포함)
-RUN pip install --no-cache-dir --default-timeout=1000 --trusted-host pypi.python.org torch pandas requests -r requirements.txt
+# PyTorch 외 패키지 먼저 설치
+RUN pip install --no-cache-dir --default-timeout=1000 --trusted-host pypi.python.org -r requirements.txt
+
+# PyTorch 설치 (CPU 버전 설치, GPU 필요 시 +cu 버전 설치)
+RUN pip install --no-cache-dir torch==1.9.0+cpu -f https://download.pytorch.org/whl/cpu/torch_stable.html
 
 # YOLOv5 리포지토리 및 모델 가중치 복사
 COPY yolov5 /app/yolov5
