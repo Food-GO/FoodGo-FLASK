@@ -31,7 +31,6 @@ def detect():
     results.print()  # YOLO 결과를 텍스트 형식으로 출력
 
     # YOLO 모델 결과 객체 그대로 JSON으로 변환하여 반환
-    # (가공 없이 YOLO 모델이 제공하는 정보 그대로 반환)
     results_dict = results.pandas().xyxy[0].to_dict(orient="records")  # JSON 변환 가능한 객체로 변환
 
     # 결과를 JSON으로 반환

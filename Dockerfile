@@ -11,14 +11,14 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-# 작업 디렉토리 설정
+# 작업 디렉터리 설정
 WORKDIR /app
 
 # 필요한 패키지 복사
 COPY requirements.txt requirements.txt
 
-# PyTorch 및 패키지 설치 (pandas 포함)
-RUN pip install --no-cache-dir --default-timeout=1000 --trusted-host pypi.python.org torch pandas -r requirements.txt
+# PyTorch 및 필요한 패키지 설치 (pandas, requests 포함)
+RUN pip install --no-cache-dir --default-timeout=1000 --trusted-host pypi.python.org torch pandas requests -r requirements.txt
 
 # YOLOv5 리포지토리 및 모델 가중치 복사
 COPY yolov5 /app/yolov5
