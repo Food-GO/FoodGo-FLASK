@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx \
     libglib2.0-0 \
     git \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # 작업 디렉터리 설정
@@ -17,10 +18,7 @@ WORKDIR /app
 # 필요한 패키지 복사
 COPY requirements.txt requirements.txt
 
-# Flask와 Werkzeug만 먼저 설치하여 의존성 문제 방지
-RUN pip install --no-cache-dir Flask==2.0.2 Werkzeug==2.0.3
-
-# 나머지 PyTorch 외 패키지 설치
+# 모든 패키지 설치 (PyTorch 제외)
 RUN pip install --no-cache-dir --default-timeout=1000 --trusted-host pypi.python.org -r requirements.txt
 
 # PyTorch 설치 (CPU 버전 설치, GPU 필요 시 +cu 버전 설치)

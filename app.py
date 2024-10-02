@@ -8,7 +8,13 @@ app = Flask(__name__)
 
 model_path = '/app/best10_01.pt'  # Docker 컨테이너 내의 경로
 yolov5_repo_path = '/app/yolov5'  # Docker 컨테이너 내의 YOLOv5 리포지토리 경로
-model = torch.hub.load(yolov5_repo_path, 'custom', path=model_path, source='local')
+
+# YOLOv5 모델 로드 (오류 처리 포함)
+try:
+    model = torch.hub.load(yolov5_repo_path, 'custom', path=model_path, source='local')
+except Exception as e:
+    print(f"Error loading YOLOv5 model: {e}")
+    raise
 
 # 라우트 설정
 @app.route('/detect', methods=['POST'])
